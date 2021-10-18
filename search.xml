@@ -9,15 +9,179 @@
 <li>后端架构</li>
 <li>前端框架</li>
 <li>计算机基础</li>
-<li>云原生知识<span id="more"></span></li>
+<li>云原生知识<span id="more"></span>
+</li>
 </ul>
 <p>&nbsp;&nbsp;&nbsp;我在简介里提到过我的愿望是成为全栈工程师,因此会记录很多学习内容；但会更偏重后端，前端只会涉猎框架部分，不会涉及大前端。你可以把本站当作免费的笔记分享或者是入门教程，而不是一个程序员为了虚荣所设立的个人品牌。</p>
 <p>&nbsp;&nbsp;&nbsp;如果你喜欢我的文章或者跟我有共同的兴趣，你可以尝试通过以下方式联系我：</p>
 <ul>
-<li>邮箱:  <a href="mailto:&#51;&#53;&#49;&#53;&#56;&#x33;&#57;&#49;&#x38;&#x39;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#51;&#53;&#49;&#53;&#56;&#x33;&#57;&#49;&#x38;&#x39;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;</a></li>
-<li>网站：<a href="http://www.codelearner.cn(正在建设中)/">www.codelearner.cn(正在建设中)</a></li>
+<li>邮箱:  3515839189@qq.com</li>
+<li>网站：www.codelearner.cn(正在建设中)</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>布尔代数与Verilog基础</title>
+    <url>/2021/10/18/Logic1/</url>
+    <content><![CDATA[<h1 id="布尔代数"><a href="#布尔代数" class="headerlink" title="布尔代数"></a>布尔代数</h1><p><strong>布尔代数</strong>又叫做逻辑代数，是一种基于二进制数据的纯数学分支。</p>
+<h2 id="基本逻辑门"><a href="#基本逻辑门" class="headerlink" title="基本逻辑门"></a>基本逻辑门</h2><ul>
+<li><p><strong>非门</strong></p>
+<p>在<strong>布尔代数</strong>中，计作: </p>
+<script type="math/tex; mode=display">
+F = \overline{\text{A}}</script><p>在<strong>Verilog HDL</strong>中，计作：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">y =~ x</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>与门</p>
+<p>在<strong>布尔代数</strong>中，计作：</p>
+<script type="math/tex; mode=display">
+F = A * B</script><script type="math/tex; mode=display">
+F = A  B</script><p>在<strong>Verilog HDL</strong>中，计作：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">z = x &amp; y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或门</p>
+<p>在<strong>布尔代数</strong>中，计作: </p>
+<script type="math/tex; mode=display">
+F = A + B</script><p>在<strong>Verilog HDL</strong>中，计作：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">z = x | y</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="常用逻辑门"><a href="#常用逻辑门" class="headerlink" title="常用逻辑门"></a>常用逻辑门</h2><ul>
+<li><strong>与非门</strong></li>
+<li><strong>或非门</strong></li>
+<li><strong>异或门</strong></li>
+<li><strong>同或门</strong></li>
+</ul>
+<p>以下是这四种门的<strong>Verilog</strong>实现方式：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">z = ~ (x &amp; y)</span><br><span class="line">z = ~ (x | y)</span><br><span class="line">z = (~x &amp; y) | (~y &amp; x)</span><br><span class="line">z = (~x &amp; ~y) | (x &amp; y)</span><br></pre></td></tr></table></figure>
+<h1 id="布尔定律"><a href="#布尔定律" class="headerlink" title="布尔定律"></a>布尔定律</h1><h2 id="单变量布尔定律"><a href="#单变量布尔定律" class="headerlink" title="单变量布尔定律"></a>单变量布尔定律</h2><ul>
+<li><strong>0 - 1律</strong></li>
+<li><strong>互补律</strong></li>
+<li><strong>重叠律</strong></li>
+<li><strong>还原律</strong></li>
+</ul>
+<h2 id="多变量布尔定律"><a href="#多变量布尔定律" class="headerlink" title="多变量布尔定律"></a>多变量布尔定律</h2><ul>
+<li><p><strong>交换律</strong></p>
+</li>
+<li><p><strong>分配律</strong></p>
+</li>
+<li><p><strong>结合律</strong></p>
+</li>
+<li><p><strong>联合律</strong></p>
+</li>
+<li><p><strong>吸收律</strong></p>
+</li>
+</ul>
+<p>&nbsp;&nbsp;这里仅列出有难度的定理：</p>
+<p><strong>联合律</strong>:</p>
+<ul>
+<li><p><strong>(x &amp; y) | (~x &amp; y ) = y</strong></p>
+</li>
+<li><p><strong>(x | y) &amp; (~x | y) = y</strong></p>
+</li>
+</ul>
+<p><strong>吸收律</strong>：</p>
+<ul>
+<li><strong>x | (x &amp; y) = x</strong></li>
+<li><strong>x &amp; (x | y) = x</strong></li>
+</ul>
+<p>验证布尔定律的方法：</p>
+<ul>
+<li><strong>真值表</strong></li>
+<li><strong>文氏图</strong></li>
+</ul>
+<h2 id="布尔代数化简"><a href="#布尔代数化简" class="headerlink" title="布尔代数化简"></a>布尔代数化简</h2><ul>
+<li><strong>公式法</strong></li>
+<li><strong>卡诺图</strong></li>
+</ul>
+<p>关于化简，<strong>GitHub</strong>的课件库上有详细的讨论，详情见下方链接：</p>
+<p><a href="https://github.com/hewei2001/HITSZ-OpenCS"><strong>哈工深Github</strong></a></p>
+<h1 id="Verilog-HDL语言基础"><a href="#Verilog-HDL语言基础" class="headerlink" title="Verilog HDL语言基础"></a>Verilog HDL语言基础</h1><h2 id="Verilog模块及端口"><a href="#Verilog模块及端口" class="headerlink" title="Verilog模块及端口"></a>Verilog模块及端口</h2><p><strong>Verilog</strong>使用<strong>模块</strong>来代表基本的功能单元，最基本的实例代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> learn (</span><br><span class="line">    <span class="keyword">input</span>  a,</span><br><span class="line">    <span class="keyword">input</span>  b, </span><br><span class="line">    <span class="keyword">output</span> y</span><br><span class="line">);</span><br><span class="line">  <span class="keyword">wire</span> a, b;</span><br><span class="line">  <span class="keyword">wire</span> y;</span><br><span class="line">  <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span> </span><br></pre></td></tr></table></figure>
+<p>模块由<strong>module</strong>关键字开头，以<strong>endmodule</strong>结尾；模块的<strong>端口列表</strong>则描述了其<strong>输入端口</strong>和<strong>输出端口</strong>。模块声明类似于模版，通过模版生成实例完成模块间的调用。</p>
+<p><strong>Verilog</strong>端口三种类型：</p>
+<ul>
+<li><strong>input</strong></li>
+<li><strong>output</strong></li>
+<li><strong>inout</strong></li>
+</ul>
+<p><strong>端口</strong>的默认数据类型是<strong>wire型</strong>，如果希望端口能保存数据，声明其为<strong>reg型</strong>。wire用于反映外界信号的变化，reg用于存储数据。</p>
+<ul>
+<li><p><strong>inout</strong>：wire -&gt; wire</p>
+</li>
+<li><p><strong>Input</strong>: wire -&gt; wire, reg</p>
+</li>
+<li><p><strong>output</strong>: reg, wire -&gt; wire</p>
+<p>特别注意：</p>
+<ul>
+<li><p><strong>Verilog</strong>允许端口两端具有不同位宽</p>
+</li>
+<li><p><strong>Verilog</strong>允许未连接端口存在</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Verilog</strong>中有两种端口连接方式：</p>
+<ul>
+<li><strong>顺序连接</strong></li>
+<li><strong>命名连接</strong></li>
+</ul>
+<p>命名连接代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> learn (</span><br><span class="line">    <span class="keyword">input</span>  a,</span><br><span class="line">    <span class="keyword">input</span>  b, </span><br><span class="line">    <span class="keyword">output</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span> </span><br><span class="line">learn learner(<span class="variable">.a</span>(A),<span class="variable">.b</span>(B),<span class="variable">.y</span>(Y));</span><br></pre></td></tr></table></figure>
+<h2 id="Verilog-HDL数据类型声明"><a href="#Verilog-HDL数据类型声明" class="headerlink" title="Verilog HDL数据类型声明"></a>Verilog HDL数据类型声明</h2><ul>
+<li><strong>wire</strong></li>
+<li><strong>reg</strong></li>
+<li><strong>memory</strong></li>
+<li><strong>parameter</strong></li>
+</ul>
+<p><strong>wire</strong>表示以<strong>assign</strong>关键字指定的逻辑信号，<strong>Verilog</strong>中默认数据类型为<strong>wire</strong>。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">wire</span>[<span class="number">7</span>:<span class="number">0</span>] a, b, c;</span><br></pre></td></tr></table></figure>
+<p><strong>reg</strong>是寄存器的抽象，其用来表示<strong>always</strong>模块中的指定信号，代表触发器。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">reg</span>[<span class="number">7</span>:<span class="number">0</span>] a, b, c;</span><br></pre></td></tr></table></figure>
+<p><strong>memory</strong>是存储器的一种抽象。Verilog通过<strong>reg</strong>数组描述ROM、RAM存储器以及寄存器数组，<strong>memory</strong>则对其进行了拓展，达到二维数组的效果。</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">reg</span>[<span class="number">7</span>:<span class="number">0</span>] ROM [<span class="number">7</span>:<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<p>​    上述示例定义了一个存储位宽为8，存储深度为8的存储器。</p>
+<p><strong>Verilog</strong>其他类型如下：</p>
+<ul>
+<li>integer</li>
+<li>real（实数）</li>
+<li>realtime（用实数表示的时间）</li>
+<li>wand（线与线网）</li>
+<li>wor（线或线网）</li>
+<li>scalared（比特可以部分选中的线型变量）</li>
+<li>vectored（比特不能单独选中的线网）</li>
+<li>tri</li>
+<li>tri0</li>
+<li>tri1</li>
+<li>triand</li>
+<li>trior</li>
+<li>trireg</li>
+</ul>
+<h2 id="Verilog-HDL运算"><a href="#Verilog-HDL运算" class="headerlink" title="Verilog HDL运算"></a>Verilog HDL运算</h2><p><strong>Verilog</strong>运算符与<strong>java</strong>基本类似，这里仅列举<strong>Verilog</strong>特有的运算符：</p>
+<ul>
+<li><strong>缩减运算</strong>：&amp;、｜、^，其思想类似于<strong>java</strong>流运算中的归约操作。</li>
+<li><strong>事件相等运算</strong>：==\=、!\==，用于比较不确定值和高阻值</li>
+<li><strong>位拼接运算</strong>：{}，把多个变量的位合并到一起;也有<strong>N{}</strong>形式语法。</li>
+</ul>
+<p>缩减运算示例：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] a;</span><br><span class="line"><span class="keyword">wire</span> y;</span><br><span class="line"><span class="keyword">assign</span> y = |a;</span><br></pre></td></tr></table></figure>
+<p>位拼接运算示例：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">wire</span>[<span class="number">3</span>:<span class="number">0</span>] a, b;</span><br><span class="line"><span class="keyword">wire</span> c, d;</span><br><span class="line"><span class="keyword">assign</span> c = &#123;a, b&#125;;</span><br><span class="line"><span class="keyword">assign</span> d = &#123;<span class="number">3</span>&#123;a&#125;, b&#125;</span><br></pre></td></tr></table></figure>
+<p>特别注意：</p>
+<ul>
+<li>/ 、%、**不能自动综合。</li>
+<li>事件相等运算不能自动综合。</li>
+<li><strong>Verilog</strong>的运算符优先级与<strong>java</strong>一致。</li>
+</ul>
+<h2 id="Verilog位宽调整"><a href="#Verilog位宽调整" class="headerlink" title="Verilog位宽调整"></a><strong>Verilog</strong>位宽调整</h2><p><strong>Verilog</strong>中的整数均为32位，一旦不小心会发生微妙的错误。</p>
+]]></content>
+      <categories>
+        <category>计算机基础</category>
+      </categories>
+      <tags>
+        <tag>数字逻辑</tag>
+      </tags>
   </entry>
   <entry>
     <title>初始纪念</title>
